@@ -21,7 +21,7 @@
   <br>
   
   <!-- Buat sebuah tag form dan arahkan action nya ke controller ini lagi -->
-  <form method="post" action="<?php echo base_url("Resko/form"); ?>" enctype="multipart/form-data">
+  <form method="post" action="<?php echo base_url("Resko/import"); ?>" enctype="multipart/form-data">
     <!-- 
     -- Buat sebuah input type file
     -- class pull-left berfungsi agar file input berada di sebelah kiri
@@ -31,7 +31,7 @@
     <!--
     -- BUat sebuah tombol submit untuk melakukan preview terlebih dahulu data yang akan di import
     -->
-    <input type="submit" name="preview" value="Preview">
+    <input type="submit" name="preview" value="Upload File">
   </form>
   
   <?php
@@ -45,9 +45,9 @@
     echo "<form method='post' action='".base_url("Resko/import")."'>";
     
     // Buat sebuah div untuk alert validasi kosong
-    echo "<div style='color: red;' id='kosong'>
-    Semua data belum diisi, Ada <span id='jumlah_kosong'></span> data yang belum diisi.
-    </div>";
+    // echo "<div style='color: red;' id='kosong'>
+    // Semua data belum diisi, Ada <span id='jumlah_kosong'></span> data yang belum diisi.
+    // </div>";
     
     echo "<table border='1' cellpadding='8'>
     <tr>
@@ -122,7 +122,7 @@
       
       // Buat sebuah tombol untuk mengimport data ke database
       echo "<button type='submit' name='import'>Import</button>";
-      echo "<a href='".base_url("index.php/Siswa")."'>Cancel</a>";
+      echo "<a href='".base_url("index.php/Resko")."'>Cancel</a>";
     }
     
     echo "</form>";
