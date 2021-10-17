@@ -150,7 +150,13 @@ class Resko extends CI_Controller
 	}
 
 	 public function import(){
-	    // Load plugin PHPExcel nya
+
+		if(isset($_POST['preview'])){ // Jika user menekan tombol Preview pada form
+	      // lakukan upload file dengan memanggil function upload yang ada di SiswaModel.php
+	      $upload = $this->Mexcel->upload_file("data_training");
+	      
+	      if($upload['result'] == "success"){ // Jika proses upload sukses
+	      // Load plugin PHPExcel nya
 	    include APPPATH.'third_party/PHPExcel/PHPExcel.php';
 	    
 	    $excelreader = new PHPExcel_Reader_Excel2007();
@@ -196,13 +202,17 @@ class Resko extends CI_Controller
 	    // Panggil fungsi insert_multiple yg telah kita buat sebelumnya di model
 	    $this->Mexcel->insert_multiple($data);
 	    
+	      }else{ // Jika proses upload gagal
+	        $data['upload_error'] = $upload['error']; // Ambil pesan error uploadnya untuk dikirim ke file form dan ditampilkan
+	      }
+	    }
+	   
 	    redirect("Resko"); // Redirect ke halaman awal (ke controller siswa fungsi index)
 	  }
 
 	
 	 public function form(){
 		//init modal
-	
 	    $data = array(); // Buat variabel $data sebagai array
 	    
 	    if(isset($_POST['preview'])){ // Jika user menekan tombol Preview pada form
